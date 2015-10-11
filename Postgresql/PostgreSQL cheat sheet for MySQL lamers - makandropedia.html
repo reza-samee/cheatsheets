@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class='cards_view'>
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='width=650, maximum-scale=1.0' name='viewport'>
+<title>PostgreSQL cheat sheet for MySQL lamers - makandropedia</title>
+<link href="/assets/application-60c96b9117e6473fbcb6e71a8fc64eec.css" media="all" rel="stylesheet" type="text/css" />
+<script src="/assets/application-eb0c050586ec36e0bb248997d17344ac.js" type="text/javascript"></script>
+<script src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js" type="text/javascript"></script>
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="XLejzSt766krXz9vecat97NzYLQOfcDAAwxHedYn4M+wRI/ae86O8Y/cV1ahqw4DJET6h9cL4NqDhwkTZjKG3Q==" name="csrf-token" />
+<link href='/favicon.ico' rel='icon' type='image/vnd.microsoft.icon'>
+<link href='http://makandracards.com/makandra/feed.rss' rel='alternate' title='RSS feed (all cards)' type='application/rss+xml'>
+<script>
+  //<![CDATA[
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8114576-8']);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  //]]>
+</script>
+
+
+</head>
+<body class='wide large_head' data-color='white'>
+<div id='head'>
+<div id='head_inner'>
+<div class='viewport'>
+<div id='left'>
+<div class='line'>
+<div class='segment'>
+<a href="/" class="service_banner"><span class="company_name">makandra</span><span>cards</span></a>
+</div>
+</div>
+<div class='line site'>
+<div class='segment'>
+<a href="/makandra" id="site_banner">makandropedia</a>
+</div>
+<div class='segment'>
+<div class="site_navigation navigation"><div class="site_navigation_inner navigation_inner"><div class="level_1 bar"><div class="level_1_inner bar_inner"><div class="level_1_inner_inner bar_inner_inner"><a href="/makandra" class="section current first"><span class="section_inner">Cards</span></a><a href="/makandra/topics" class="section last" data-dropdown="/makandra/topics/dropdown"><span class="section_inner">Topics ▾</span></a><span class="end"></span></div></div></div></div></div>
+</div>
+</div>
+</div>
+<div id='right'>
+<div class='welcome'>
+Welcome, guest
+</div>
+<div class='account_navigation'>
+<div class='link'>
+<a href="https://makandracards.com/users/new">Sign up</a>
+</div>
+<div class='link'>
+<a href="https://makandracards.com/session/new">Sign in</a>
+</div>
+<div class='link'>
+<a href="/">About makandra cards</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class='cards_view' data-color='gray' id='document'>
+<div class='cards_view' id='main'>
+
+<div class='cards_view viewport'>
+<div id='note'>
+<div class='main'>
+<div class='note_navigation'>
+<div class='note_navigation__next'><a href="/makandra/18579-postgresql-cheat-sheet-for-mysql-lamers/next">« next card</a></div>
+<div class='note_navigation__previous'><a href="/makandra/18579-postgresql-cheat-sheet-for-mysql-lamers/previous">previous card »</a></div>
+<div class='note_navigation__back'><a href="/makandra">back to all cards in this deck</a></div>
+</div>
+<div class='main_inner'>
+<div class='note_body'>
+<div class='note_info'>
+Posted about 2 years ago. Visible to the public.
+</div>
+<h1>PostgreSQL cheat sheet for MySQL lamers</h1>
+<div class='note_body_inner'>
+<p>So you're switching to PostgreSQL from MySQL? Here is some help…</p>
+
+<p>Connecting to MySQL:</p>
+
+<ol>
+  <li>Use MySQL client CLI to connect: <code>mysql -u user_name -p</code></li>
+</ol>
+
+<p>Connecting to PostgreSQL:</p>
+
+<ol>
+  <li>Switch to the PostgreSQL user, e.g. via <code>sudo -iu postgres</code></li>
+  <li>Run PostgreSQL client CLI: <code>psql</code></li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>MySQL command</th>
+      <th>PostgreSQL equivalent</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SHOW DATABASES;</td>
+      <td>\list</td>
+      <td>Show databases</td>
+    </tr>
+    <tr>
+      <td>USE some_database;</td>
+      <td>\c some_database</td>
+      <td>Use/Connect to a database named 'some_database'</td>
+    </tr>
+    <tr>
+      <td>SHOW TABLES;</td>
+      <td>\dt</td>
+      <td>Show tables/relations within one database</td>
+    </tr>
+    <tr>
+      <td>DESCRIBE some_table;</td>
+      <td>\d+ some_table</td>
+      <td>Show table details (columns, types)</td>
+    </tr>
+    <tr>
+      <td>SHOW INDEX FROM some_table;</td>
+      <td>\di</td>
+      <td>Show indices of some_table (in case of MySQL) and all indices of database (PostgreSQL)</td>
+    </tr>
+    <tr>
+      <td>CREATE USER harry  IDENTIFIED BY 'foo';</td>
+      <td>CREATE ROLE username WITH createdb LOGIN PASSWORD 'password';</td>
+      <td>Create user that can create databases</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>ALTER ROLE username WITH PASSWORD 'password';</td>
+      <td>Change password of an existing user</td>
+    </tr>
+    <tr>
+      <td>GRANT ALL PRIVILEGES ON database.* TO username@localhost;</td>
+      <td>GRANT ALL PRIVILEGES ON DATABASE database TO username;</td>
+      <td>Grants access to a database.</td>
+    </tr>
+    <tr>
+      <td>?</td>
+      <td>ALTER USER username CREATEDB;</td>
+      <td>Grants access to create databases.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="further-reading">Further reading</h1>
+
+<ul>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres">How to setup Ruby on Rails with PostgreSQL</a></li>
+</ul>
+<div class="book ">
+  <a href="https://leanpub.com/growing-rails" class="book__cover"><img alt="Growing Rails Applications in Practice" src="/assets/growing_rails_cover-30fb39434de004469aab0c3794251d1a.jpg" /></a>
+  <div class="book__text">
+    <div class="book__pretitle">Check out our new e-book:</div>
+    <div class="book__title"><a href="https://leanpub.com/growing-rails">Growing Rails Applications in Practice</a></div>
+    <div class="book__subtitle">
+      Learn to structure large Ruby on Rails codebases with the tools you already know and love.
+    </div>
+    <div class="book__more">
+      <a href="https://leanpub.com/growing-rails">Learn more</a>
+    </div>
+  </div>
+</div>
+
+<div class=" buttons"><div class="primary_button"> </div></div>
+</div>
+<div class='clear'></div>
+</div>
+</div>
+
+</div>
+<div class='side'>
+<h2 class='head'>
+Author of this card:
+</h2>
+<div class='author'>
+<img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=78b770ec2583f664cf1bfcabc6699655&amp;size=80" />
+<div class='name'>Thomas Eisenbarth</div>
+<div class='link'><a href="http://makandra.de">makandra.de</a></div>
+<div class=" buttons"><div class="primary_button"><a href="/makandra/18579-postgresql-cheat-sheet-for-mysql-lamers/tributes" data-method="post" rel="nofollow"><span class="tribute_icon">Say thanks</span></a>
+</div></div></div>
+
+<dl>
+<dt>Last edit:</dt>
+<dd>
+<div>9 months ago</div>
+<div>by Henning Koch</div>
+</dd>
+<dt>About this deck:</dt>
+<dd>
+We are <a href="http://makandra.com">makandra</a> and do test-driven, agile Ruby on Rails software development.
+</dd>
+<dd><a href="#" onclick="$.modal( $(&quot;.license&quot;), { containerCss: {height: 645, width: 770} } ); return false;">License for source code</a></dd>
+<div class='formatted_content license'>
+<h1>License for source code</h1>
+<p>
+All source code included in the card
+<strong><a href="https://makandracards.com/makandra/18579-postgresql-cheat-sheet-for-mysql-lamers">PostgreSQL cheat sheet for MySQL lamers</a></strong>
+is licensed under the license stated below. This includes both code snippets
+embedded in the card text and code that is included as a file attachment.
+Excepted from this license are code snippets that are explicitely marked as
+citations from another source.
+</p>
+<pre>The MIT License (MIT)&#x000A;&#x000A;Copyright (c) 2013-2015 makandra GmbH&#x000A;&#x000A;Permission is hereby granted, free of charge, to any person obtaining a&#x000A;copy of this software and associated documentation files (the&#x000A;"Software"), to deal in the Software without restriction, including&#x000A;without limitation the rights to use, copy, modify, merge, publish,&#x000A;distribute, sublicense, and/or sell copies of the Software, and to permit&#x000A;persons to whom the Software is furnished to do so, subject to the&#x000A;following conditions:&#x000A;&#x000A;The above copyright notice and this permission notice shall be included in&#x000A;all copies or substantial portions of the Software.&#x000A;&#x000A;THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS&#x000A;OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF&#x000A;MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN&#x000A;NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,&#x000A;DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR&#x000A;OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE&#x000A;USE OR OTHER DEALINGS IN THE SOFTWARE.</pre>
+</div>
+
+</dl>
+
+</div>
+<div class='clear'></div>
+</div>
+<div id='tail_for_print'>
+Posted by Thomas Eisenbarth to makandropedia
+</div>
+<script>
+  //<![CDATA[
+    $(prettyPrint());
+  //]]>
+</script>
+
+</div>
+<div id='bottom'>
+<div class='viewport'>
+<div data-load-related-cards='http://makandracards.com/makandra/18579-postgresql-cheat-sheet-for-mysql-lamers/related'></div>
+
+</div>
+</div>
+</div>
+</div>
+<div id='tail'>
+<div id='tail_inner'>
+<div class='viewport'>
+<a href="/privacy_policy" class="privacy_policy">Privacy policy</a>
+<a href="/terms_of_service" class="terms_of_service">Terms of service</a>
+<a href="/imprint" class="imprint">Imprint</a>
+</div>
+</div>
+</div>
+
+</body>
+</html>
